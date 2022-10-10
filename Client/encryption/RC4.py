@@ -37,7 +37,6 @@ class RC4():
         file_name = os.path.basename(file)
         enc_file_name = file_name + ".enc"
         enc_file_path = os.path.join(os.getcwd(), enc_file_name)
-        print(f"enc file path = {enc_file_path}")
 
         with open(file, "rb") as in_file:
             stream = in_file.read()

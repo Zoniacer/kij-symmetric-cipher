@@ -1,16 +1,19 @@
 import sys
 import os
+import socket
 from encryption.RC4 import RC4
 
 available_methods = ("aes", "des", "rc4")
 encryptor = {"rc4": RC4()}
+BUFFER_SIZE = 4096
+SEPARATOR = "<SEP>"
 
 input_message = [
     '\r----------',
     'Available commands:',
-    '/send <AES/DES/RC4> <file>          Send an encrypted file to server',
-    '/decrypt <AES/DES/RC4> <file>       Decrypt an encrypted file',
-    '/quit                               Exit the app',
+    '/send <AES/DES/RC4> <file full path>          Send an encrypted file to server',
+    '/decrypt <AES/DES/RC4> <file full path>       Decrypt an encrypted file',
+    '/quit                                         Exit the app',
     '----------',
     '>> '
 ]
@@ -24,7 +27,25 @@ def print_command():
 
 
 def send_file(filePath):
-    pass
+    server_address = ('127.0.0.1', 5000)
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect(server_address)
+
+    file_name = os.path.basename(filePath)
+    file_size = os.path.getsize(filePath)
+
+    client_socket.sendall(f"{file_name}{SEPARATOR}{file_size}".encode())
+
+    with open(filePath, 'rb') as file:
+        while True:
+            bytes_read = file.read(BUFFER_SIZE)
+            if not bytes_read:
+                print(f'Finished sending {file_name}')
+                break
+            client_socket.sendall(bytes_read)
+        file.close()
+
+    client_socket.close()
 
 
 def encrypt_and_send(method, file):
