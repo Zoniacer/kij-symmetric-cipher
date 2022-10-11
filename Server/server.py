@@ -2,6 +2,7 @@ import socket
 import select
 import sys
 import os
+import tqdm
 
 
 BUFFER_SIZE = 4096
@@ -25,7 +26,7 @@ def connect(server_socket, input_socket):
                     if data:
                         file_name, file_size = data.decode(
                             'utf-8').split(SEPARATOR)
-                        print(f"{file_name} {file_size}")
+                        # print(f"{file_name} {file_size}")
                         download_file(sock, file_name, int(file_size))
                         print('closing socket')
                         sock.close()
@@ -43,14 +44,18 @@ def connect(server_socket, input_socket):
 
 
 def download_file(socket, file_name, file_size):
+    progress = tqdm.tqdm(
+        range(file_size), f"Receiving {file_name}", unit="B", unit_scale=True, unit_divisor=1024)
+
     with open(file_name, 'wb') as file:
         total = 0
         while True:
             bytes_read = socket.recv(BUFFER_SIZE)
             total += len(bytes_read)
             file.write(bytes_read)
+            progress.update(len(bytes_read))
             if total == file_size:
-                print(f'Finished receiving {file_name}')
+                # print(f'Finished receiving {file_name}')
                 break
         file.close()
 
