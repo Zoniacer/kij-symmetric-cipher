@@ -4,9 +4,10 @@ import socket
 import tqdm
 from encryption.RC4 import RC4
 from encryption.AES_Library import AES_L
+from encryption.DES import DES_L
 
 available_methods = ("aes", "des", "rc4")
-encryptor = {"rc4": RC4(),"aes": AES_L()}
+encryptor = {"rc4": RC4(),"aes": AES_L(), "des": DES_L()}
 BUFFER_SIZE = 4096
 SEPARATOR = "<SEP>"
 
