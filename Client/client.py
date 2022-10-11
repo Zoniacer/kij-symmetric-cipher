@@ -78,7 +78,10 @@ def decrypt(method, file):
     elif not os.path.isfile(file):
         return -1
     else:
+        timer = Timer()
+        timer.start()
         encryptor[method].decrypt(file)
+        timer.finish()
         return 2
 
 
