@@ -67,8 +67,7 @@ def decrypt(method, file):
     elif not os.path.isfile(file):
         return -1
     else:
-        dec_file_path = encryptor[method].decrypt(file)
-        send_file(dec_file_path)
+        encryptor[method].decrypt(file)
         return 2
 
 
