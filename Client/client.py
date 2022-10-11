@@ -2,6 +2,7 @@ import sys
 import os
 import socket
 import tqdm
+from Timer import Timer
 from encryption.RC4 import RC4
 from encryption.AES_Library import AES_L
 from encryption.DES import DES_L
@@ -62,7 +63,10 @@ def encrypt_and_send(method, file):
     elif not os.path.isfile(file):
         return -1
     else:
+        timer = Timer()
+        timer.start()
         enc_file_path = encryptor[method].encrypt(file)
+        timer.finish()
         send_file(enc_file_path)
         return 1
 
