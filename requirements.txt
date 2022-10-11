@@ -1,0 +1,2 @@
+pycryptodome==3.15.0
+tdqm==4.64.1
