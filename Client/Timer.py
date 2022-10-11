@@ -11,4 +11,5 @@ class Timer():
 
     def finish(self):
         self.elapsed = time.perf_counter_ns() - self.start
-        print(f"This process took {self.elapsed} nano seconds")
+        self.elapsed = self.elapsed/pow(10,9)
+        print(f"This process took {self.elapsed} seconds")
