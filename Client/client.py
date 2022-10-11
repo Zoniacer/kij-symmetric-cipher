@@ -5,19 +5,20 @@ import tqdm
 from Timer import Timer
 from encryption.RC4 import RC4
 from encryption.AES_Library import AES_L
+from encryption.AES_Manual import AES_M
 from encryption.DES import DES_CBC, DES_CTR
 
-available_methods = ("aes", "des_cbc", "des_ctr", "rc4")
-encryptor = {"rc4": RC4(),"aes": AES_L(), "des_cbc": DES_CBC(), "des_ctr": DES_CTR()}
+available_methods = ("aes_l","aes_m", "des_cbc", "des_ctr", "rc4",)
+encryptor = {"rc4": RC4(),"aes_l": AES_L(), "aes_m": AES_M(), "des_cbc": DES_CBC(), "des_ctr": DES_CTR()}
 BUFFER_SIZE = 4096
 SEPARATOR = "<SEP>"
 
 input_message = [
     '\r----------',
     'Available commands:',
-    '/send <AES/DES_CBC/DES_CTR/RC4> <file full path>          Send an encrypted file to server',
-    '/decrypt <AES/DES_CBC/DES_CTR/RC4> <file full path>       Decrypt an encrypted file',
-    '/quit                                         Exit the app',
+    '/send <AES_L/AES_M/DES_CBC/DES_CTR/RC4> <file full path>          Send an encrypted file to server',
+    '/decrypt <AES_L/AES_M/DES_CBC/DES_CTR/RC4> <file full path>       Decrypt an encrypted file',
+    '/quit                                                             Exit the app',
     '----------',
     '>> '
 ]
