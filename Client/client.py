@@ -1,6 +1,7 @@
 import sys
 import os
 import socket
+import tqdm
 from encryption.RC4 import RC4
 
 available_methods = ("aes", "des", "rc4")
@@ -36,11 +37,15 @@ def send_file(filePath):
 
     client_socket.sendall(f"{file_name}{SEPARATOR}{file_size}".encode())
 
+    progress = tqdm.tqdm(range(
+        file_size), f"Sending {file_name}", unit="B", unit_scale=True, unit_divisor=1024)
+
     with open(filePath, 'rb') as file:
         while True:
             bytes_read = file.read(BUFFER_SIZE)
+            progress.update(len(bytes_read))
             if not bytes_read:
-                print(f'Finished sending {file_name}')
+                # print(f'Finished sending {file_name}')
                 break
             client_socket.sendall(bytes_read)
         file.close()
@@ -83,7 +88,8 @@ if __name__ == "__main__":
             print(
                 f'\rCommand {command[0]} not found.\n----------\n>> ', end='')
         elif command[0] == available_commands[0]:
-            result = encrypt_and_send(method=command[1], file=command[2])
+            result = encrypt_and_send(
+                method=command[1], file=command[2].strip('"'))
             print(return_code[result])
         elif command[0] == available_commands[1]:
             result = decrypt(method=command[1], file=command[2])
