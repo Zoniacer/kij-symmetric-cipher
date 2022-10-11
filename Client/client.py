@@ -15,8 +15,8 @@ SEPARATOR = "<SEP>"
 input_message = [
     '\r----------',
     'Available commands:',
-    '/send <AES/DES/RC4> <file full path>          Send an encrypted file to server',
-    '/decrypt <AES/DES/RC4> <file full path>       Decrypt an encrypted file',
+    '/send <AES/DES_CBC/DES_CTR/RC4> <file full path>          Send an encrypted file to server',
+    '/decrypt <AES/DES_CBC/DES_CTR/RC4> <file full path>       Decrypt an encrypted file',
     '/quit                                         Exit the app',
     '----------',
     '>> '
