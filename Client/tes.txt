@@ -1,1 +1,62 @@
-halo ini biasa
+Assignment 1
+Symmetric Cipher
+
+Keamanan dan Informasi Jaringan (C)
+
+
+
+
+Andika Nugrahanto                	         05111940000031
+Hanif au siape namanye                      05111940000103
+Arkan Aulia Farhan 				05111940000128
+Abiya Sabitta    		                    	05111940000166
+
+
+ 
+Description
+In this Project, we build an app to encrypt and decrypt files. We use symmetric ciphers such as AES, DES and RC4 methods in the Python language. We are using Cipher Block Chaining(CBC) and Counter(CTR) operation for comparing DES and AES. For AES, we use library and manual for testing running time library and manual. All of these methods are compiled to Server and Client for data transmission.
+
+How It Works
+AES
+Lorem ipsum
+DES
+Lorem ipsum
+RC4
+Lorem ipsum
+
+Software in Action
+AES
+Gambar 3.1 Client AES CBC with library
+
+Gambar 3.2 Client AES CTR from scratch
+Lorem ipsum
+DES
+Gambar 3.3 Client DES CBC
+
+Gambar 3.4 Client DES CTR
+Lorem ipsum
+RC4
+Gambar 3.3 Client RC4
+Lorem ipsum
+
+
+Server
+
+
+Gambar 3.4 Server
+Performance Analysis
+AES
+CBC
+
+CTR
+Lorem
+DES
+CBC
+Lorem
+CTR
+Lorem
+RC4
+Lorem ipsum
+Conclusion
+Lorem
+
